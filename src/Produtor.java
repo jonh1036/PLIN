@@ -26,5 +26,9 @@ public class Produtor {
 			}
 		}
 		
+		System.out.println("===== VALOR MÍNIMO POR MÊS =====");
+		for(int i=0; i<12; i++) {
+			System.out.println("Mês "+(i+1)+": " + valorMinimo[i]);
+		}
 	}
 }
