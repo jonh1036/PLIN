@@ -16,7 +16,7 @@ public class Produtor {
 		}
 		
 		for(int i=0; i<12; i++) {
-			if(meses[i]>900) {
+			if(meses[i]>900) { //Quando a demanda é maior que a produção normal
 				
 				leiteFaltante = meses[i] - (900 + leiteArmazenado);
 				if(((leiteArmazenado - (meses[i] - 900))<0)|| leiteFaltante == 0)//Retirando leite do estoque
@@ -38,12 +38,14 @@ public class Produtor {
 					valorMinimo[i] += (leiteArmazenado/100)*custoArmazenarLeite;
 				}
 			}
-			else if(meses[i] == 900) {
+			else if(meses[i] == 900) { //Quando a demanda é igual a produção normal
 				leiteFaltante = 0;
 				valorMinimo[i] = custoNormal + (leiteArmazenado/100)*custoArmazenarLeite;
 			}
-			else {
-				
+			else { //Quando a demanda é menor que a produção normal
+				leiteFaltante = 0;
+				leiteArmazenado += producaoNormal - meses[i];
+				valorMinimo[i] = custoNormal + (leiteArmazenado/100)*custoArmazenarLeite;
 			}
 		}
 		
