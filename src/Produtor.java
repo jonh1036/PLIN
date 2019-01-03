@@ -39,7 +39,8 @@ public class Produtor {
 				}
 			}
 			else if(meses[i] == 900) {
-				
+				leiteFaltante = 0;
+				valorMinimo[i] = custoNormal + (leiteArmazenado/100)*custoArmazenarLeite;
 			}
 			else {
 				
@@ -48,7 +49,7 @@ public class Produtor {
 		
 		System.out.println("===== VALOR MÍNIMO POR MÊS =====");
 		for(int i=0; i<12; i++) {
-			System.out.println("Mês "+(i+1)+": " + valorMinimo[i]);
+			System.out.println("Mês "+(i+1)+": R$" + valorMinimo[i]);
 		}
 	}
 }
