@@ -17,6 +17,10 @@ public class Produtor {
 		
 		for(int i=0; i<12; i++) {
 			if(meses[i]>900) { //Quando a demanda é maior que a produção normal
+				if(meses[i]>1100) {
+					valorMinimo[i] = -1.0;
+					continue;
+				}
 				
 				leiteFaltante = meses[i] - (900 + leiteArmazenado);
 				if(((leiteArmazenado - (meses[i] - 900))<0)|| leiteFaltante == 0)//Retirando leite do estoque
@@ -35,23 +39,28 @@ public class Produtor {
 				
 				if(producaoNormal + horasExtras*100 > meses[i]) { //Armazenando leite
 					leiteArmazenado = producaoNormal + horasExtras*100 - meses[i];
-					valorMinimo[i] += (leiteArmazenado/100)*custoArmazenarLeite;
+					valorMinimo[i] += (leiteArmazenado/100.0)*custoArmazenarLeite;
 				}
 			}
 			else if(meses[i] == 900) { //Quando a demanda é igual a produção normal
 				leiteFaltante = 0;
-				valorMinimo[i] = custoNormal + (leiteArmazenado/100)*custoArmazenarLeite;
+				valorMinimo[i] = custoNormal + (leiteArmazenado/100.0)*custoArmazenarLeite;
 			}
 			else { //Quando a demanda é menor que a produção normal
 				leiteFaltante = 0;
 				leiteArmazenado += producaoNormal - meses[i];
-				valorMinimo[i] = custoNormal + (leiteArmazenado/100)*custoArmazenarLeite;
+				valorMinimo[i] = custoNormal + (leiteArmazenado/100.0)*custoArmazenarLeite;
 			}
 		}
 		
 		System.out.println("===== VALOR MÍNIMO POR MÊS =====");
 		for(int i=0; i<12; i++) {
-			System.out.println("Mês "+(i+1)+": R$" + valorMinimo[i]);
+			if(valorMinimo[i]<0) {
+				System.out.println("Mês "+(i+1)+": INVIÁVEL");
+			}
+			else {
+				System.out.println("Mês "+(i+1)+": R$" + valorMinimo[i]);
+			}
 		}
 	}
 }
