@@ -17,7 +17,7 @@ public class Produtor {
 		
 		for(int i=0; i<12; i++) {
 			if(meses[i]>900) { //Quando a demanda é maior que a produção normal
-				if(meses[i]>1100) {
+				if(meses[i]> 1100 + leiteArmazenado) {
 					valorMinimo[i] = -1.0;
 					continue;
 				}
@@ -55,12 +55,10 @@ public class Produtor {
 		
 		System.out.println("===== VALOR MÍNIMO POR MÊS =====");
 		for(int i=0; i<12; i++) {
-			if(valorMinimo[i]<0) {
+			if(valorMinimo[i]<0)
 				System.out.println("Mês "+(i+1)+": INVIÁVEL");
-			}
-			else {
+			else 
 				System.out.println("Mês "+(i+1)+": R$" + valorMinimo[i]);
-			}
 		}
 	}
 }
