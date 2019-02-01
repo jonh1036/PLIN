@@ -1,6 +1,5 @@
 //Produdor de Leite
 #include <stdio.h>
-#include <stdbool.h>
 
 int main(void){
   int demanda[12], producaoAtual[12], horaExtra[12], armazenamento[12], d[12], n = 3;
