@@ -24,7 +24,7 @@ int main(void){
     }
     else if(demanda[i] <= 900){
       if(demanda[i+1] > 1100){
-        if( (demanda[i+1] - 1100) <= 200){
+        if( (demanda[i+1] - 1100) <= 1100 - demanda[i]){
           armazenamento[i] = demanda[i+1] - 1100;
           producaoAtual[i] = demanda[i] + armazenamento[i];
           horaExtra[i] = (producaoAtual[i] - 900)/100;
